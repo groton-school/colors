@@ -57,7 +57,7 @@ console.log(Colors.DarkBlueHSL);
 console.log(Colors.PurpleRGB);
 ```
 
-# PHP
+### PHP
 
 ```php
 use GrotonSchool\Colors;
