@@ -1,0 +1,9 @@
+.*
+/build/
+/dist/*.php
+/composer.*
+/eslint.config.*
+/phpcs.xml
+/src/
+/tsconfig.json
+/vendor/
