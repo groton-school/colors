@@ -1,11 +1,18 @@
 :root {
   --dark-blue: rgb(0, 80, 166);
+  --DB: rgb(0, 80, 166);
   --green: rgb(9, 180, 0);
+  --GR: rgb(9, 180, 0);
   --groton-red: #a6093d;
   --light-blue: rgb(135, 193, 255);
+  --LB: rgb(135, 193, 255);
   --no-color: rgb(128, 128, 128);
   --orange: rgb(255, 163, 0);
+  --OR: rgb(255, 163, 0);
   --purple: rgb(110, 0, 177);
+  --PR: rgb(110, 0, 177);
   --red: rgb(255, 0, 0);
+  --RD: rgb(255, 0, 0);
   --yellow: rgb(255, 249, 44);
+  --YL: rgb(255, 249, 44);
 }

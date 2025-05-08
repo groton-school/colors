@@ -21,7 +21,7 @@ composer require groton-school/colors
 
 ## Color Constants
 
-Color constants are defined in camelCase, PascalCase, CONSTANT_CASE, or kebab-case as is normal for their language context.
+Color constants are defined in camelCase, PascalCase, CONSTANT_CASE, or kebab-case as is normal for their language context. For color blocks, their standard abbreviation is also included in every language (e.g. `RED` and `RD` in PHP, or `--red` and `--RD` in CSS).
 
 - `NoColor`/`noColor`/`NO_COLOR`/`no-color` -- a gray for information not associated with a color block
 - `Red`
@@ -54,7 +54,7 @@ const Colors = require('@groton/colors');
 
 console.log(Colors.GrotonRed);
 console.log(Colors.DarkBlueHSL);
-console.log(Colors.PurpleRGB);
+console.log(Colors.PR);
 ```
 
 ### PHP
@@ -64,7 +64,7 @@ use GrotonSchool\Colors;
 
 echo Colors.GROTON_RED;
 echo Colors.DARK_BLUE_HSL;
-echo Colors.PURPL_RGB;
+echo Colors.PR;
 ```
 
 ### Sass/SCSS
@@ -82,7 +82,7 @@ echo Colors.PURPL_RGB;
 
 .my-other-style {
   color: colors.$dark-blue;
-  background: var(--purple);
+  background: var(--PR);
 }
 
 // N.B. using the Sass variables to initialize CSS variables requires string interpolation
