@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.2](https://github.com/groton-school/colors/compare/v0.1.1...v0.1.2) (2025-05-26)
+
+
+### Bug Fixes
+
+* remove accidental hex8 strings ([d7d7186](https://github.com/groton-school/colors/commit/d7d71869e08cf9d73a48317dc13d67d68e456169))
+
 ## [0.1.1](https://github.com/groton-school/colors/compare/v0.1.0...v0.1.1) (2025-05-08)
 
 
