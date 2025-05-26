@@ -23,7 +23,7 @@ export async function generate(filepath = './dist/Colors.php') {
     if (color in Abbreviations) {
       consts.push(
         // @ts-expect-error 7053 -- validity checked in if statement
-        `public const ${Abbreviations[color]} = "${value.toHex8String()}"`
+        `public const ${Abbreviations[color]} = "${value.toHexString()}"`
       );
     }
   }

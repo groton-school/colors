@@ -25,7 +25,7 @@ export async function generate(filepath = './dist/index.ts') {
     if (color in Abbreviations) {
       consts.push(
         // @ts-expect-error 7053 -- validity checked in if statement
-        `export const ${Abbreviations[color]} = '${value.toHex8String()}'`
+        `export const ${Abbreviations[color]} = '${value.toHexString()}'`
       );
     }
   }
