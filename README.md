@@ -129,4 +129,4 @@ Use the variables:
 }
 ```
 
-<iframe src="./preview.html" width="100%" height="600"></iframe>
+<iframe src="./preview.html" style="border: 0; height: 600px; width: 100%"></iframe>
