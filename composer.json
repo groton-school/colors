@@ -1,6 +1,6 @@
 {
   "name": "groton-school/colors",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Standard colors for Groton School apps",
   "license": "MIT",
   "autoload": {
