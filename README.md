@@ -21,9 +21,9 @@ composer require groton-school/colors
 
 ## Color Constants
 
-Color constants are defined in camelCase, PascalCase, CONSTANT_CASE, or kebab-case as is normal for their language context. For color blocks, their standard abbreviation is also included in every language (e.g. `RED` and `RD` in PHP, or `--red` and `--RD` in CSS).
+Color constants are defined in camelCase, PascalCase, CONSTANT_CASE, or kebab-case as is normal for their language context. For color blocks, their standard abbreviation is also included in every language (e.g. `RED` and `RD` in PHP, or `--red` and `--rd` in CSS).
 
-- `NoColor`/`noColor`/`NO_COLOR`/`no-color` -- a gray for information not associated with a color block
+- `No Color` -- a gray for information not associated with a color block
 - `Red`
 - `Orange`
 - `Yellow`
@@ -33,7 +33,15 @@ Color constants are defined in camelCase, PascalCase, CONSTANT_CASE, or kebab-ca
 - `Purple`
 - `GrotonRed` -- the school color
 
-The hex color is defined in every context. In contexts where it may also be helpful to have the RGB or HSL color definition (PHP, TypeScript, JavaScript) it is also provided with the matching suffix: `RedRGB` or `RED_RGB`, etc.
+The hex color is defined in every context. To specifically access the Hex, RGB, or HSL definition of a color, it is also provided with the matching suffix: `--red-hex` or `RedRgb` or `RED_RGB`, etc.
+
+### Variants
+
+Three color variants are provided with each color:
+
+1. Text on the color (automatically choosing white or black for readability): `--text-on-red`, `TEXT_ON_RED`, etc.
+2. The color on white (automatically adjusted for readability): `$red-on-white`, `RedOnWhite`, etc.
+3. The color on black (automatically adjusted for readability): `RED_ON_BLACK`, `$red-on-black`, etc.
 
 ## Usage
 
@@ -43,8 +51,8 @@ The hex color is defined in every context. In contexts where it may also be help
 import * as Colors from '@groton/colors';
 
 console.log(Colors.GrotonRed);
-console.log(Colors.DarkBlueHSL);
-console.log(Colors.PurpleRGB);
+console.log(Colors.DarkBlueHsl);
+console.log(Colors.PurpleRgb);
 ```
 
 ### JavaScript CommonJS module
@@ -53,8 +61,8 @@ console.log(Colors.PurpleRGB);
 const Colors = require('@groton/colors');
 
 console.log(Colors.GrotonRed);
-console.log(Colors.DarkBlueHSL);
-console.log(Colors.PR);
+console.log(Colors.DarkBlueHsl);
+console.log(Colors.PurpleRgb);
 ```
 
 ### PHP
@@ -64,7 +72,7 @@ use GrotonSchool\Colors;
 
 echo Colors.GROTON_RED;
 echo Colors.DARK_BLUE_HSL;
-echo Colors.PR;
+echo Colors.PURPLE_RGB;
 ```
 
 ### Sass/SCSS
@@ -81,8 +89,8 @@ echo Colors.PR;
 }
 
 .my-other-style {
-  color: colors.$dark-blue;
-  background: var(--PR);
+  color: colors.$dark-blue-hsl;
+  background: var(--purple-rgb);
 }
 
 // N.B. using the Sass variables to initialize CSS variables requires string interpolation
@@ -104,6 +112,21 @@ Use a CDN to get the variables:
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@groton/colors@0.1.0/vars.css"
+  href="https://cdn.jsdelivr.net/npm/@groton/colors@0.2.0/vars.css"
 />
 ```
+
+Use the variables:
+
+```css
+.my-style {
+  background: var(--groton-red);
+}
+
+.my-other-style {
+  color: var(--dark-blue-hsl);
+  background: var(--purple-rgb);
+}
+```
+
+<iframe src="./preview.html" width="100%" height="600"></iframe>

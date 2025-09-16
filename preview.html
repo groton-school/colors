@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>@groton/colors</title>
+    <link rel="stylesheet" href="./vars.css" />
+    <style>
+      html {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .sample {
+        display: inline-block;
+        padding: 0.5em;
+        margin: 0.5em;
+        border: solid 1px lightgray;
+        border-radius: 0.5em;
+        white-space: nobreak;
+      }
+
+      .sample .well {
+        display: inline-block;
+        border-radius: 0.5em 0 0 0.5em;
+        height: 1.25em;
+        width: 1.25em;
+        background: var(--sample);
+      }
+
+      .sample .text {
+        height: 1.25em;
+        padding: 0 1em 0 0;
+        margin: 0.25em;
+        border-radius: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="samples"></div>
+    <script>
+      // eslint-disable-next-line no-undef
+      const samples = document.getElementById('samples');
+      const colors = [
+        'groton-red',
+        'no-color',
+        'red',
+        'orange',
+        'green',
+        'yellow',
+        'light-blue',
+        'dark-blue',
+        'purple'
+      ];
+      for (const color of colors) {
+        // eslint-disable-next-line no-undef
+        const sample = document.createElement('div');
+        sample.classList.add('sample');
+        sample.setAttribute('style', `--sample: var(--${color})`);
+        sample.innerHTML = `
+        <div>
+          <div class="text"><div class="well">&nbsp;</div> ${color}</div>
+          <div class="text" style="background: var(--sample); color: var(--text-on-${color})">
+            <div class="well" style="--sample: var(--text-on-${color})">&nbsp;</div> text on ${color}
+          </div>
+          <div class="text" style="background: white; color: var(--${color}-on-white)">
+            <div class="well" style="--sample: var(--${color}-on-white)">&nbsp;</div> ${color} on white
+          </div>
+          <div class="text" style="background: black; color: var(--${color}-on-black)">
+            <div class="well" style="--sample: var(--${color}-on-black)">&nbsp;</div> ${color} on black
+          </div>
+        </div>`;
+        samples.appendChild(sample);
+      }
+    </script>
+  </body>
+</html>
