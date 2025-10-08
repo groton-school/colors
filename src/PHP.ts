@@ -1,7 +1,7 @@
 import path from 'node:path';
 import * as Variant from './Variant.js';
 
-export async function PHP(options: Variant.MinimalOptions = {}) {
+export async function PHP(options: Variant.MinimalOptions) {
   const config = { name: 'Colors.php', prefix: '', suffix: '', ...options };
   const name = path.basename(config.name, '.php');
   Variant.output({
@@ -25,8 +25,8 @@ class ${name}
       prefix: config.prefix,
       suffix: config.suffix
     },
-    prettier: `php-cs-fixer fix ${Variant.FILEPATH}`,
     transform: config.transform,
+    components: config.components,
     append: config.append
   });
 }

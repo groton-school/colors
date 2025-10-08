@@ -24,6 +24,7 @@ async function TypeScriptDeclaration(options: Variant.MinimalOptions = {}) {
     line: { prefix: 'export declare const ', equals: "='", suffix: "';" },
     identifier: { prefix: config.prefix, suffix: config.suffix },
     transform: config.transform,
+    components: config.components,
     append: config.append
   });
 }

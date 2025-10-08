@@ -1,11 +1,11 @@
 import { Root } from '@battis/qui-cli.root';
-import { Shell } from '@battis/qui-cli.shell';
 import { Case } from 'change-case-all';
 import fs from 'node:fs';
 import path from 'node:path';
 import tinycolor from 'tinycolor2';
 import { Abbreviations } from './Abbreviations.js';
 import * as Colors from './Colors.js';
+import { Overrides } from './Overrides.js';
 
 export const FILEPATH = '%FILEPATH%';
 
@@ -36,7 +36,7 @@ type Options = {
   line: Context & { equals: string };
   identifier: Context;
   transform?: (value: string) => string;
-  prettier?: string;
+  components?: boolean;
   append?: boolean;
 };
 
@@ -46,13 +46,18 @@ export type MinimalOptions = {
   suffix?: string;
   transform?: (value: string) => string;
   append?: boolean;
+  components?: boolean;
 };
 
 const Notations = {
   '': (value: string) => tinycolor(value).toHexString(),
   hex: (value: string) => tinycolor(value).toHexString(),
-  rgb: (value: string) => tinycolor(value).toRgbString(),
-  hsl: (value: string) => tinycolor(value).toHslString()
+  r: (value: string) => tinycolor(value).toRgb().r,
+  g: (value: string) => tinycolor(value).toRgb().g,
+  b: (value: string) => tinycolor(value).toRgb().b,
+  h: (value: string) => tinycolor(value).toHsl().h,
+  s: (value: string) => tinycolor(value).toHsl().s * 100 + '%',
+  l: (value: string) => tinycolor(value).toHsl().l * 100 + '%'
 };
 
 export async function output(options: Options) {
@@ -61,20 +66,33 @@ export async function output(options: Options) {
   let color: keyof typeof Colors;
   const { prefix, equals, suffix } = options.line;
   for (color in Colors) {
-    const value = transform(Colors[color]);
+    const value =
+      `${options.identifier.prefix}${color}${options.identifier.suffix}` in
+      Overrides
+        ? // @ts-expect-error 7053 -- validity checked in if statement
+          Overrides[
+            `${options.identifier.prefix}${color}${options.identifier.suffix}`
+          ]
+        : transform(Colors[color]);
     if (color in Abbreviations) {
       lines.push(
         // @ts-expect-error 7053 -- validity checked in if statement
-        `${prefix}${Case[options.canonicalize](`${options.identifier.prefix}${Abbreviations[color]}${options.identifier.suffix}`)}${equals}${Notations['hex'](value)}${suffix}`
+        `${prefix}${Case[options.canonicalize](`${options.identifier.prefix}xxxx${Abbreviations[color]}yyyy${options.identifier.suffix}`)}${equals}${Notations['hex'](value)}${suffix}`.replace(
+          /xxxx.+yyyy/i,
+          // @ts-expect-error 7053 -- validity checked in if statement
+          Abbreviations[color]
+        )
       );
     }
     let notation: keyof typeof Notations;
     for (notation in Notations) {
-      const name = Case[options.canonicalize](
-        `${options.identifier.prefix}${color}${options.identifier.suffix} ${notation}`.trim()
-      );
-      const version = Notations[notation](value);
-      lines.push(`${prefix}${name}${equals}${version}${suffix}`);
+      if (notation === '' || options.components) {
+        const name = Case[options.canonicalize](
+          `${options.identifier.prefix}${color}${options.identifier.suffix} ${notation}`.trim()
+        );
+        const version = Notations[notation](value);
+        lines.push(`${prefix}${name}${equals}${version}${suffix}`);
+      }
     }
   }
   lines.push(options.file.suffix);
@@ -92,9 +110,4 @@ export async function output(options: Options) {
     lines.unshift(previous);
   }
   fs.writeFileSync(filepath, lines.join('\n'));
-  let { prettier } = options;
-  if (!prettier) {
-    prettier = `prettier -w ${FILEPATH}`;
-  }
-  Shell.exec(prettier.replace(FILEPATH, `"${filepath}"`));
 }

@@ -1,6 +1,7 @@
 import { Core } from '@battis/qui-cli.core';
 import { register } from '@battis/qui-cli.plugin';
 import { Root } from '@battis/qui-cli.root';
+import { Shell } from '@battis/qui-cli.shell';
 import fs from 'node:fs';
 import path from 'node:path';
 import tinycolor from 'tinycolor2';
@@ -27,7 +28,7 @@ function findReadable(color: string, background: string) {
 }
 
 const Variants = [
-  {},
+  { components: true },
   {
     prefix: 'text on ',
     transform: (color: string) => {
@@ -60,6 +61,8 @@ async function run() {
     ...Variants.map((variant) => CSS(variant)),
     ...Variants.map((variant) => Sass(variant))
   ]);
+  Shell.exec('prettier -w dist _colors.scss vars.css');
+  Shell.exec('php-cs-fixer fix dist');
 }
 
 await register({ name, src, run });

@@ -10,6 +10,7 @@ export async function Sass(options: Variant.MinimalOptions = {}) {
     line: { prefix: '$', equals: ':', suffix: ';' },
     identifier: { prefix: config.prefix, suffix: config.suffix },
     transform: config.transform,
+    components: config.components,
     append: config.append
   });
 }
