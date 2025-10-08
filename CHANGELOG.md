@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.3.0](https://github.com/groton-school/colors/compare/v0.2.0...v0.3.0) (2025-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace *-hsl and *-rgb with components, abbreviation case no longer changes
+
+### Features
+
+* replace *-hsl and *-rgb with components, abbreviation case no longer changes ([85583b9](https://github.com/groton-school/colors/commit/85583b9a5afca7a8180ed8c0393f0e79adbee86e))
+
 ## [0.2.0](https://github.com/groton-school/colors/compare/v0.1.2...v0.2.0) (2025-09-16)
 
 
