@@ -61,7 +61,8 @@ async function run() {
     ...Variants.map((variant) => CSS(variant)),
     ...Variants.map((variant) => Sass(variant))
   ]);
-  Shell.exec('prettier -w dist _colors.scss vars.css');
+  Shell.exec('tsc -p tsconfig.typescript.json');
+  Shell.exec('prettier -w dist *.*css');
   Shell.exec('php-cs-fixer fix dist');
 }
 

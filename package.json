@@ -28,6 +28,7 @@
     "@qui-cli/root": "^3.0.1",
     "@qui-cli/shell": "^3.0.1",
     "@tsconfig/node20": "^20.1.6",
+    "@tsconfig/recommended": "^1.0.10",
     "@types/node": "^24.7.0",
     "@types/tinycolor2": "^1.4.6",
     "change-case-all": "^2.1.0",
