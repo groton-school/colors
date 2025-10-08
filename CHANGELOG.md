@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.4.1](https://github.com/groton-school/colors/compare/v0.4.0...v0.4.1) (2025-10-08)
+
+
+### Bug Fixes
+
+* tweak tsconfig for ESM compilation ([d2c4b4a](https://github.com/groton-school/colors/commit/d2c4b4a994ee0c334c3caa352c4b33b027a5cfa9))
+
 ## [0.4.0](https://github.com/groton-school/colors/compare/v0.3.0...v0.4.0) (2025-10-08)
 
 
