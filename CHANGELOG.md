@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.4.0](https://github.com/groton-school/colors/compare/v0.3.0...v0.4.0) (2025-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* summary Abbreviations and All values, SCSS as map
+
+### Features
+
+* summary Abbreviations and All values, SCSS as map ([d5280cf](https://github.com/groton-school/colors/commit/d5280cfef870c879f257d22b7e59bf52062ad022))
+
 ## [0.3.0](https://github.com/groton-school/colors/compare/v0.2.0...v0.3.0) (2025-10-08)
 
 
