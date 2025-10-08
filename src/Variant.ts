@@ -1,4 +1,4 @@
-import { Root } from '@battis/qui-cli.root';
+import { Root } from '@qui-cli/root';
 import { Case } from 'change-case-all';
 import fs from 'node:fs';
 import path from 'node:path';

@@ -1,7 +1,7 @@
-import { Core } from '@battis/qui-cli.core';
-import { register } from '@battis/qui-cli.plugin';
-import { Root } from '@battis/qui-cli.root';
-import { Shell } from '@battis/qui-cli.shell';
+import { Core } from '@qui-cli/core';
+import { register } from '@qui-cli/plugin';
+import { Root } from '@qui-cli/root';
+import { Shell } from '@qui-cli/shell';
 import fs from 'node:fs';
 import path from 'node:path';
 import tinycolor from 'tinycolor2';
