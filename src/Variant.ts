@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import tinycolor from 'tinycolor2';
 import { Abbreviations } from './Abbreviations.js';
-import * as Colors from './Colors.js';
+import { Colors } from './Colors.js';
 import { Overrides } from './Overrides.js';
 
 export const FILEPATH = '%FILEPATH%';
@@ -51,7 +51,6 @@ export type MinimalOptions = {
 
 const Notations = {
   '': (value: string) => tinycolor(value).toHexString(),
-  hex: (value: string) => tinycolor(value).toHexString(),
   r: (value: string) => tinycolor(value).toRgb().r,
   g: (value: string) => tinycolor(value).toRgb().g,
   b: (value: string) => tinycolor(value).toRgb().b,
@@ -77,7 +76,7 @@ export async function output(options: Options) {
     if (color in Abbreviations) {
       lines.push(
         // @ts-expect-error 7053 -- validity checked in if statement
-        `${prefix}${Case[options.canonicalize](`${options.identifier.prefix}xxxx${Abbreviations[color]}yyyy${options.identifier.suffix}`)}${equals}${Notations['hex'](value)}${suffix}`.replace(
+        `${prefix}${Case[options.canonicalize](`${options.identifier.prefix}xxxx${Abbreviations[color]}yyyy${options.identifier.suffix}`)}${equals}${Notations[''](value)}${suffix}`.replace(
           /xxxx.+yyyy/i,
           // @ts-expect-error 7053 -- validity checked in if statement
           Abbreviations[color]
@@ -110,4 +109,33 @@ export async function output(options: Options) {
     lines.unshift(previous);
   }
   fs.writeFileSync(filepath, lines.join('\n'));
+}
+
+type SummaryOptions = {
+  prefix: string;
+  equals: string;
+  assocStart: string;
+  assocEnd: string;
+  listStart: string;
+  listEnd: string;
+  listEquals: string;
+  listSeparator: string;
+  suffix: string;
+  canonicalize: Options['canonicalize'];
+};
+
+export function summaries(options: SummaryOptions) {
+  return `${options.prefix}${Case[options.canonicalize]('abbreviations')}${options.equals}${options.assocStart}${Object.keys(
+    Abbreviations
+  )
+    .map(
+      (key) =>
+        `${Abbreviations[key as keyof typeof Abbreviations]}${options.listEquals}${Case[options.canonicalize](key)}`
+    )
+    .join(options.listSeparator)}${options.assocEnd}${options.suffix}
+    ${options.prefix}${Case[options.canonicalize]('all')}${options.equals}${options.listStart}${Object.keys(
+      Colors
+    )
+      .map((key) => `${Case[options.canonicalize](key)}`)
+      .join(options.listSeparator)}${options.listEnd}${options.suffix}`;
 }

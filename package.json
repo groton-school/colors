@@ -10,7 +10,7 @@
     "clean": "run-s clean:*",
     "clean:build": "del ./build",
     "clean:dist": "del ./dist",
-    "clean:stylesheets": "del ./_colors.scss ./vars.css",
+    "clean:stylesheets": "del ./*.*css",
     "build": "run-s build:*",
     "build:clean": "run-s clean",
     "build:compile": "tsc",

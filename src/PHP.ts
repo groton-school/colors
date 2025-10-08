@@ -4,16 +4,29 @@ import * as Variant from './Variant.js';
 export async function PHP(options: Variant.MinimalOptions) {
   const config = { name: 'Colors.php', prefix: '', suffix: '', ...options };
   const name = path.basename(config.name, '.php');
+  const canonicalize = 'constant';
   Variant.output({
     name: config.name,
-    canonicalize: 'constant',
+    canonicalize,
     filename: { prefix: 'dist/', suffix: '' },
     file: {
       prefix: `<?php
-declare(strict_types=1);
-namespace GrotonSchool;
-class ${name}
-{`,
+          declare(strict_types=1);
+          namespace GrotonSchool;
+          class ${name}
+          {
+              ${Variant.summaries({
+                prefix: 'public const ',
+                equals: '=',
+                assocStart: '["',
+                assocEnd: '"]',
+                listStart: '["',
+                listEnd: '"]',
+                listEquals: '"=>"',
+                listSeparator: '","',
+                suffix: ';',
+                canonicalize
+              })}`,
       suffix: `}`
     },
     line: {
